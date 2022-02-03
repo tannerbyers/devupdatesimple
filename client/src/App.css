@@ -1,0 +1,99 @@
+.Header {
+  padding-bottom: 2%;
+}
+
+.Content {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.Left {
+  width: 50vw;
+  height: 90vh;
+  ;
+}
+
+.Right {
+  width: 40vw;
+  height: 90vh;
+  ;
+}
+
+.HNContainer {
+  height: 100%;
+  overflow: auto;
+}
+
+.TwitterContainer {
+  height: 40%;
+  ;
+  overflow: auto;
+}
+
+.NewsContainer {
+  height: 55%;
+  margin-top: 2%;
+  ;
+  overflow: auto;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.story {
+  width: 80%;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+a:hover,
+a:active {
+  text-decoration: none;
+}
+
+.story-title {
+  margin-bottom: 4px;
+}
+a:link,
+a:visited {
+  font-size: 18px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.story-info {
+  color: #000000;
+  text-decoration: none;
+}
+
+span {
+  margin: 4px;
+}
+a {
+  color: inherit;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .nav-link {
+    flex-direction: column;
+  }
+  .story {
+    width: 90%;
+  }
+}
