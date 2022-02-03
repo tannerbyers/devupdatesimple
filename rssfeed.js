@@ -5,7 +5,7 @@ import { readFile } from "fs/promises";
 const feeds = JSON.parse(
   await readFile(new URL("./feeds.json", import.meta.url))
 );
-
+// TODO go through this link and add more rss feeds: "https://github.com/impressivewebs/frontend-feeds"
 function requestBlogs(urls) {
   const parser = new Parser({
     timeout: 20000,
