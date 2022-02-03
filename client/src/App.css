@@ -1,3 +1,7 @@
+* {
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .Header {
   padding-bottom: 2%;
 }
@@ -13,13 +17,11 @@
 .Left {
   width: 50vw;
   height: 90vh;
-  ;
 }
 
 .Right {
   width: 40vw;
   height: 90vh;
-  ;
 }
 
 .HNContainer {
@@ -29,14 +31,12 @@
 
 .TwitterContainer {
   height: 40%;
-  ;
   overflow: auto;
 }
 
 .NewsContainer {
   height: 55%;
   margin-top: 2%;
-  ;
   overflow: auto;
 }
 

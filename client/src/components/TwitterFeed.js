@@ -24,7 +24,10 @@ const getMediaUrl = (tweetMediaGiven, attachments) => {
       console.log(tweetMediaGiven[i]);
       console.log(tweetMediaGiven[i].preview_image_url);
 
-      return tweetMediaGiven[i].preview_image_url || tweetMediaGiven[i].url;
+      if (tweetMediaGiven[i].preview_image_url) {
+        return tweetMediaGiven[i].preview_image_url;
+      }
+      return tweetMediaGiven[i].url;
     }
   }
 };
@@ -46,7 +49,15 @@ const TwitterFeed = () => {
     <>
       {tweets &&
         tweets.map((tweet) => (
-          <Card sx={{ display: "flex" }}>
+          <Card
+            sx={{
+              display: "flex",
+              color: "#1DA1F2",
+              borderBottomColor: "rgb(239, 243, 244)",
+              border: "solid rgb(239, 243, 244)",
+              margin: "1%"
+            }}
+          >
             <Box
               sx={{
                 display: "flex",

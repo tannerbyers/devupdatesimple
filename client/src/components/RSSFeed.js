@@ -30,7 +30,7 @@ const RSSFeed = () => {
   return (
     <div>
       {RSS.map((article) => (
-        <div>
+        <Card style={{ border: "solid rgb(239, 243, 244)", margin: "1%" }}>
           <CardContent>
             <Typography variant="h5" component="div">
               {article.title}
@@ -51,7 +51,7 @@ const RSSFeed = () => {
               Learn More
             </Button>
           </CardActions>
-        </div>
+        </Card>
       ))}
     </div>
   );
