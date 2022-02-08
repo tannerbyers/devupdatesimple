@@ -81,7 +81,7 @@ const TwitterFeed = ({ layout }) => {
                 {tweet.attachments && (
                   <CardMedia
                     component="img"
-                    sx={{ width: 151, borderRadius: 5, padding: "1rem"}}
+                    sx={{ width: 151, borderRadius: 5, margin: "1rem", border: ".1rem solid lightgrey"}}
                     src={getMediaUrl(tweetMedia, tweet.attachments)}
                   />
                 )}
