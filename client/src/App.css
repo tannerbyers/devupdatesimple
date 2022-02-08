@@ -1,7 +1,3 @@
-* {
-  background-color: rgba(0, 0, 0, 0);
-}
-
 .Header {
   padding-bottom: 2%;
 }
@@ -12,32 +8,45 @@
   text-align: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  padding: 20px;
+  height: 100vh;
+  background-color: #1976d2;
 }
 
 .Left {
   width: 50vw;
-  height: 90vh;
+  height: 80vh;
 }
 
 .Right {
   width: 40vw;
-  height: 90vh;
+  height: 80vh;
 }
 
 .HNContainer {
   height: 100%;
   overflow: auto;
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: white;
 }
 
 .TwitterContainer {
   height: 40%;
   overflow: auto;
+  border: 1px solid;
+  border-radius: 10px;
+  margin-top: 3%;
+  background-color: white;
 }
 
 .NewsContainer {
   height: 55%;
   margin-top: 2%;
   overflow: auto;
+  border: 1px solid;
+  border-radius: 10px;
+  background-color: white;
 }
 
 h1 {
@@ -50,8 +59,11 @@ h1 {
   width: 80%;
   margin: 10px auto;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px;
+  display: flex;
+  text-align: left;
+  align-items: center;
 }
 
 a:hover,
@@ -70,8 +82,11 @@ a:visited {
 }
 
 .story-info {
-  color: #000000;
+  color: grey;
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 span {
@@ -96,4 +111,30 @@ a {
   .story {
     width: 90%;
   }
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+table {
+  border-collapse: separate;
+  text-indent: initial;
+  white-space: normal;
+  line-height: normal;
+  font-weight: normal;
+  font-size: medium;
+  font-style: normal;
+  color: -internal-quirk-inherit;
+  text-align: start;
+  border-spacing: 2px;
+  font-variant: normal;
+}
+
+.subtext {
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 7pt;
+  color: #828282;
 }

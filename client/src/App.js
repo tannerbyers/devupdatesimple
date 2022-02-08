@@ -4,39 +4,95 @@ import ResponsiveAppBar from "./components/ResponsiveAppBar.js";
 import TwitterFeed from "./components/TwitterFeed.js";
 import RSSFeed from "./components/RSSFeed.js";
 import ShowStories from "./components/ShowStories.js";
+import Button from "@mui/material/Button";
+import React, { useState, useEffect } from "react";
 
 function App() {
-  // fetching the GET route from the Express server which matches the GET route from server.js
-  const callBackendAPI = async () => {
-    const response = await fetch("/api/twitter_id");
-    const body = await response.json();
+  const [layout, setLayout] = useState("default");
 
-    if (response.status !== 200) {
-      throw Error(body.message);
-    }
-    console.log(body);
+  const setLayoutPermanent = (layout) => {
+    console.log(layout);
+    // setter
+    localStorage.setItem("layout", layout);
+    setLayout(layout);
   };
 
+  useEffect(() => {
+    const loadedLayout = localStorage.getItem("layout");
+    if (loadedLayout) {
+      setLayout(loadedLayout);
+    }
+  }, []);
   return (
     <div className="App">
       <ResponsiveAppBar />
+      <Button onClick={() => setLayoutPermanent("default")} variant="outlined">
+        Default
+      </Button>
+      <Button onClick={() => setLayoutPermanent("minimal")} variant="outlined">
+        Minimal
+      </Button>
       <div className="Content">
-        <div className="Left">
-          <h3>Daily HN Content</h3>
-          <div className="HNContainer">
-            <ShowStories />
+        {layout == "default" ? (
+          <>
+            <div className="Left">
+              <div className="HNContainer">
+                <h3
+                  style={{
+                    width: "80%",
+                    margin: "10px auto",
+                    padding: "10px",
+                    textAlign: "left",
+                  }}
+                >
+                  Daily HN Content
+                </h3>
+                <ShowStories layout={layout} />
+              </div>
+            </div>
+            <div className="Right">
+              <div className="NewsContainer">
+                <h3
+                  style={{
+                    width: "80%",
+                    margin: "10px auto",
+                    padding: "10px",
+                    textAlign: "left",
+                  }}
+                >
+                  Your News
+                </h3>
+
+                <RSSFeed layout={layout} />
+              </div>
+              <div className="TwitterContainer">
+                <h3
+                  style={{
+                    width: "80%",
+                    margin: "10px auto",
+                    padding: "10px",
+                    textAlign: "left",
+                  }}
+                >
+                  Recent Tweets
+                </h3>
+                <TwitterFeed layout={layout} />
+              </div>
+            </div>
+          </>
+        ) : (
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <div>
+              <ShowStories layout={layout} />
+            </div>
+            <div>
+              <TwitterFeed layout={layout} />
+            </div>
+            <div style={{ width: "30vw" }}>
+              <RSSFeed layout={layout} />
+            </div>
           </div>
-        </div>
-        <div className="Right">
-          <h3>Recent Tweets</h3>
-          <div className="TwitterContainer">
-            <TwitterFeed />
-          </div>
-          <h3>Your News</h3>
-          <div className="NewsContainer">
-            <RSSFeed />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );

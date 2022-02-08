@@ -16,7 +16,7 @@ export default async function getUserIdWithUserName() {
   // by default, only the User ID, name and user name are returned
   const params = {
     usernames: "tannerlinsley,adamwathan,wesbos,benawad", // Edit usernames to look up
-    "user.fields": "id", // Edit optional query parameters here
+    "user.fields": "profile_image_url,name,username,verified", // Edit optional query parameters here
   };
 
   // this is the HTTP header that adds bearer token authentication
@@ -33,3 +33,17 @@ export default async function getUserIdWithUserName() {
     throw new Error("Unsuccessful request");
   }
 }
+
+(async () => {
+  try {
+    // Make request
+    const response = await getUserIdWithUserName();
+    console.dir(response, {
+      depth: null,
+    });
+  } catch (e) {
+    console.log(e);
+    process.exit(-1);
+  }
+  process.exit();
+})();

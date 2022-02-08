@@ -1,36 +1,72 @@
 import React from "react";
+import { timeSince } from "../utils/utils";
 
-const Link = ({ url, title }) => (
-  <a href={url} target="_blank" rel="noreferrer">
-    {title}
-  </a>
-);
-
-const Story = ({ story: { id, by, title, kids, time, url } }) => {
+const Link = ({ url, title, bold }) => {
+  return (
+    <>
+      {bold ? (
+        <b>
+          <a href={url} target="_blank" rel="noreferrer">
+            {title}
+          </a>
+        </b>
+      ) : (
+        <a
+          style={{ color: "grey" }}
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {title}
+        </a>
+      )}
+    </>
+  );
+};
+const Story = ({ story: { id, by, title, kids, time, url, score } }) => {
   return (
     <div className="story">
-      <div className="story-title">
-        <Link url={url} title={title} />
+      <div
+        style={{
+          marginRight: "1rem",
+          padding: ".3rem",
+          border: "solid",
+          borderRadius: "10px",
+          width: "2.5rem",
+          height: "2.5rem",
+          textAlign: "center",
+          justifyContent: "center",
+        }}
+      >
+        {score}
       </div>
-      <div className="story-info">
-        <span>
-          by{" "}
-          <Link url={`https://news.ycombinator.com/user?id=${by}`} title={by} />
-        </span>
-        |
-        <span>
-          {new Date(time * 1000).toLocaleDateString("en-US", {
-            hour: "numeric",
-            minute: "numeric",
-          })}
-        </span>
-        |
-        <span>
+      <div>
+        <div className="story-title">
+          <Link bold url={url} title={title} />
           <Link
-            url={`https://news.ycombinator.com/item?id=${id}`}
-            title={`${kids && kids.length > 0 ? kids.length : 0} comments`}
+            url={url}
+            title={" (" + (url?.split("/")[2] || "hackernews.com") + ")"}
           />
-        </span>
+          <span>
+            <a href="#">...</a>
+          </span>
+        </div>
+        <div className="story-info">
+          <span>
+            by{" "}
+            <Link
+              url={`https://news.ycombinator.com/user?id=${by}`}
+              title={by}
+            />
+          </span>
+          |<span>{timeSince(new Date(time * 1000))}</span>|
+          <span>
+            <Link
+              url={`https://news.ycombinator.com/item?id=${id}`}
+              title={`${kids && kids.length > 0 ? kids.length : 0} comments`}
+            />
+          </span>
+        </div>
       </div>
     </div>
   );
