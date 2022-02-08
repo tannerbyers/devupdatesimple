@@ -17,6 +17,10 @@ const recentTweetsMock = JSON.parse(
   await readFile(new URL("./recentTweetsMock.json", import.meta.url))
 );
 
+const twitterUserMock = JSON.parse(
+  await readFile(new URL("./twitterUserMock.json", import.meta.url))
+);
+
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
@@ -34,6 +38,21 @@ app.get("/api/recent_twitter_posts", async (req, res) => {
     // Make request. I'm commenting this out due to rate limitng suspension :c
     // const response = await getUsersTimeline();
     const response = recentTweetsMock;
+    res.send(response);
+  } catch (e) {
+    console.log(e);
+    res.send(
+      "Sorry. Some intern tripped on our api cord to twitter. We'll get it fixed up in a jiffy!"
+    );
+    process.exit(-1);
+  }
+});
+
+app.get("/api/twitter_user", async (req, res) => {
+  try {
+    // Make request. I'm commenting this out due to rate limitng suspension :c
+    // const response = await getUsersTimeline();
+    const response = twitterUserMock;
     res.send(response);
   } catch (e) {
     console.log(e);

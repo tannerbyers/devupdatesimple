@@ -11,7 +11,6 @@ function App() {
   const [layout, setLayout] = useState("default");
 
   const setLayoutPermanent = (layout) => {
-    console.log(layout);
     // setter
     localStorage.setItem("layout", layout);
     setLayout(layout);

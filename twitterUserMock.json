@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1164219021283094530/ACRln2kL_normal.jpg",
+      "id": "50136899",
+      "verified": false,
+      "name": "Tanner Linsley",
+      "username": "tannerlinsley"
+    },
+    {
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1362367807887974401/kuJ1OFT1_normal.jpg",
+      "id": "716933677",
+      "verified": false,
+      "name": "Adam Wathan",
+      "username": "adamwathan"
+    },
+    {
+      "profile_image_url": "https://pbs.twimg.com/profile_images/877525007185858562/7G9vGTca_normal.jpg",
+      "id": "815246",
+      "verified": true,
+      "name": "Wes Bos",
+      "username": "wesbos"
+    },
+    {
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1429491920548495364/kH9yqObU_normal.jpg",
+      "id": "840626569743912960",
+      "verified": false,
+      "name": "Ben Awad",
+      "username": "benawad"
+    }
+  ]
+}

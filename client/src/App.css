@@ -138,3 +138,8 @@ table {
   font-size: 7pt;
   color: #828282;
 }
+
+p {
+  margin: 0;
+  padding: 0;
+}

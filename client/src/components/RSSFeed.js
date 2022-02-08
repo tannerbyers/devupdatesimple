@@ -11,7 +11,6 @@ import { timeSince } from "../utils/utils.js";
 const getRSSFeed = async () => {
   const response = await fetch("/api/rss_feed");
   const body = await response.json();
-  console.log({ body });
   if (response.status !== 200) {
     throw Error(body.message);
   }
@@ -30,12 +29,10 @@ function convertToPlain(html) {
 }
 
 const RSSFeed = ({ layout }) => {
-  console.log({ layout });
   const [RSS, setRSS] = useState([]);
 
   useEffect(async () => {
     const response = await getRSSFeed();
-    console.log({ response });
     setRSS(response);
   }, []);
 

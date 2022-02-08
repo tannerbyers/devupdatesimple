@@ -25,10 +25,6 @@ export const getStories = async (type) => {
 export const getMediaUrl = (tweetMediaGiven, attachments) => {
   for (let i = 0; i < tweetMediaGiven.length; i++) {
     if (tweetMediaGiven[i].media_key == attachments.media_keys[0]) {
-      console.log("image found");
-      console.log(tweetMediaGiven[i]);
-      console.log(tweetMediaGiven[i].preview_image_url);
-
       if (tweetMediaGiven[i].preview_image_url) {
         return tweetMediaGiven[i].preview_image_url;
       }
@@ -40,6 +36,17 @@ export const getMediaUrl = (tweetMediaGiven, attachments) => {
 
 export const getUserTweets = async () => {
   const response = await fetch("/api/recent_twitter_posts");
+  const body = await response.json();
+
+  if (response.status !== 200) {
+    throw Error(body.message);
+  }
+  return body;
+};
+
+
+export const getTwitterUserData = async () => {
+  const response = await fetch("/api/twitter_user");
   const body = await response.json();
 
   if (response.status !== 200) {
