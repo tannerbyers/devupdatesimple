@@ -56,8 +56,8 @@ const RSSFeed = ({ layout }) => {
                   maxHeight: "10vh",
                   border: "solid rgb(239, 243, 244)",
                   margin: "1%",
-                  paddingLeft: "5%",
                   textAlign: "left",
+                  padding: "5%"
                 }}
               >
                 <p style={{ float: "right", paddingRight: "5%" }}>
