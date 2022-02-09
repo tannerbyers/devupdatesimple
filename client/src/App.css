@@ -28,6 +28,13 @@ h4 {
   min-width: 500px;
 }
 
+.Center {
+  width: 50vw;
+  min-width: 500px;
+  background-color: white;
+  padding: "5%";
+}
+
 .Right {
   width: 40vw;
   height: 88vh;
