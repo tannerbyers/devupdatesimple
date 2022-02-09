@@ -5,7 +5,6 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import {
   getMediaUrl,
   getUserTweets,
@@ -30,7 +29,6 @@ const TwitterFeed = ({ layout }) => {
     const specificUser = twitterUsersData.filter(
       (user) => user.id == tweet.author_id
     );
-    console.log(specificUser[0][field]);
     return specificUser[0][field];
   };
 
@@ -59,6 +57,7 @@ const TwitterFeed = ({ layout }) => {
                 display: "flex",
                 margin: "1%",
                 padding: "5%",
+                border: "solid rgb(239, 243, 244)",
               }}
             >
               <div style={{ paddingRight: "5%" }}>
@@ -81,7 +80,12 @@ const TwitterFeed = ({ layout }) => {
                 {tweet.attachments && (
                   <CardMedia
                     component="img"
-                    sx={{ width: 151, borderRadius: 5, margin: "1rem", border: ".1rem solid lightgrey"}}
+                    sx={{
+                      width: 151,
+                      borderRadius: 5,
+                      margin: "1rem",
+                      border: ".1rem solid lightgrey",
+                    }}
                     src={getMediaUrl(tweetMedia, tweet.attachments)}
                   />
                 )}
@@ -118,17 +122,11 @@ const TwitterFeed = ({ layout }) => {
                 </CardContent>
               </Box>
               {tweet.attachments && (
-                <Button
-                  onClick={(event) => {
-                    console.log(event);
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    sx={{ width: 151 }}
-                    src={getMediaUrl(tweetMedia, tweet.attachments)}
-                  />
-                </Button>
+                <CardMedia
+                  component="img"
+                  sx={{ width: 151 }}
+                  src={getMediaUrl(tweetMedia, tweet.attachments)}
+                />
               )}
             </Card>
           ))}

@@ -1,3 +1,13 @@
+p {
+  margin: 0;
+  padding: 0;
+}
+
+h4 {
+  margin: 0;
+  padding: 0;
+}
+
 .Header {
   padding-bottom: 2%;
 }
@@ -9,18 +19,18 @@
   justify-content: space-around;
   flex-wrap: wrap;
   padding: 20px;
-  height: 100vh;
-  background-color: #1976d2;
+  height: 92vh;
 }
 
 .Left {
   width: 50vw;
-  height: 80vh;
+  height: 88vh;
+  min-width: 500px;
 }
 
 .Right {
   width: 40vw;
-  height: 80vh;
+  height: 88vh;
 }
 
 .HNContainer {
@@ -32,43 +42,31 @@
 }
 
 .TwitterContainer {
-  height: 40%;
+  height: 40vh;
   overflow: auto;
   border: 1px solid;
   border-radius: 10px;
-  margin-top: 3%;
+  margin-top: 3vh;
   background-color: white;
 }
 
 .NewsContainer {
-  height: 55%;
-  margin-top: 2%;
+  height: 45vh;
   overflow: auto;
   border: 1px solid;
   border-radius: 10px;
   background-color: white;
-}
-
-h1 {
-  text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
 }
 
 .story {
   width: 80%;
   margin: 10px auto;
-  border: 1px solid #ccc;
+  border: solid rgb(239, 243, 244);
   border-radius: 10px;
   padding: 10px;
   display: flex;
   text-align: left;
   align-items: center;
-}
-
-a:hover,
-a:active {
-  text-decoration: none;
 }
 
 .story-title {
@@ -89,13 +87,6 @@ a:visited {
   flex-wrap: wrap;
 }
 
-span {
-  margin: 4px;
-}
-a {
-  color: inherit;
-}
-
 @media screen and (max-width: 600px) {
   body {
     font-size: 0.9rem;
@@ -113,33 +104,8 @@ a {
   }
 }
 
-tr {
-  display: table-row;
-  vertical-align: inherit;
-  border-color: inherit;
-}
-
-table {
-  border-collapse: separate;
-  text-indent: initial;
-  white-space: normal;
-  line-height: normal;
-  font-weight: normal;
-  font-size: medium;
-  font-style: normal;
-  color: -internal-quirk-inherit;
-  text-align: start;
-  border-spacing: 2px;
-  font-variant: normal;
-}
-
 .subtext {
   font-family: Verdana, Geneva, sans-serif;
   font-size: 7pt;
   color: #828282;
-}
-
-p {
-  margin: 0;
-  padding: 0;
 }

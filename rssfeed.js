@@ -10,24 +10,24 @@ function requestBlogs(urls) {
   const parser = new Parser({
     timeout: 20000,
   });
-  const yestoday = moment({ hour: 0, minute: 0, seconds: 0 }).add(-365, "days");
+  const year = moment({ hour: 0, minute: 0, seconds: 0 }).add(-365, "days");
   const today = moment({ hour: 0, minute: 0, seconds: 0 });
-  return urls.map((url) => {
+  return urls.map((url, i) => {
     return new Promise((resolve, reject) => {
       try {
         parser
           .parseURL(url)
           .then((feed) => {
+            console.log(feed.items);
             const blogs = feed.items
               .map((item) => ({
+                baseUrl: urls[i],
                 title: item.title,
                 link: item.link,
                 content: item.content || item["content:encoded"],
                 pubDate: new Date(item.pubDate),
               }))
-              .filter(
-                (item) => yestoday < item.pubDate && today > item.pubDate
-              );
+              .filter((item) => year < item.pubDate && today > item.pubDate);
 
             resolve(blogs);
           })

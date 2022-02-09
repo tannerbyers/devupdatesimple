@@ -1,5 +1,5 @@
 import React from "react";
-import { timeSince } from "../utils/utils";
+import { timeSinceDate } from "../utils/utils";
 
 const Link = ({ url, title, bold }) => {
   return (
@@ -26,20 +26,18 @@ const Link = ({ url, title, bold }) => {
 const Story = ({ story: { id, by, title, kids, time, url, score } }) => {
   return (
     <div className="story">
-      <div
+      <b
         style={{
+          display: "flex",
           marginRight: "1rem",
-          padding: ".3rem",
-          border: "solid",
           borderRadius: "10px",
-          width: "2.5rem",
-          height: "2.5rem",
           textAlign: "center",
           justifyContent: "center",
+          color: "#1976d2",
         }}
       >
         {score}
-      </div>
+      </b>
       <div>
         <div className="story-title">
           <Link bold url={url} title={title} />
@@ -59,7 +57,7 @@ const Story = ({ story: { id, by, title, kids, time, url, score } }) => {
               title={by}
             />
           </span>
-          |<span>{timeSince(new Date(time * 1000))}</span>|
+          |<span>{timeSinceDate(new Date(time * 1000))}</span>|
           <span>
             <Link
               url={`https://news.ycombinator.com/item?id=${id}`}

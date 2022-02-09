@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import { timeSince } from "../utils/utils.js";
-
+import { timeSinceDate } from "../utils/utils.js";
+import { ReactJs } from "@icons-pack/react-simple-icons";
+import { V8 } from "@icons-pack/react-simple-icons";
 const getRSSFeed = async () => {
   const response = await fetch("/api/rss_feed");
   const body = await response.json();
@@ -17,16 +12,30 @@ const getRSSFeed = async () => {
   return body;
 };
 
-function convertToPlain(html) {
-  // Create a new div element
-  var tempDivElement = document.createElement("div");
+const GetIconWithURL = ({ url }) => {
+  switch (url) {
+    case "https://reactjs.org/feed.xml":
+      return (
+        <div>
+          <ReactJs
+            style={{ paddingRight: ".5rem" }}
+            color="#61DAFB"
+            size={30}
+          />
+        </div>
+      );
 
-  // Set the HTML content with the given value
-  tempDivElement.innerHTML = html;
+    case "https://v8.dev/blog.atom":
+      return (
+        <div>
+          <V8 style={{ paddingRight: ".5rem" }} color="#4B8BF5" size={30} />
+        </div>
+      );
 
-  // Retrieve the text property of the element
-  return tempDivElement.textContent || tempDivElement.innerText || "";
-}
+    default:
+      return <>Default</>;
+  }
+};
 
 const RSSFeed = ({ layout }) => {
   const [RSS, setRSS] = useState([]);
@@ -53,20 +62,20 @@ const RSSFeed = ({ layout }) => {
             <a href={article.link} target="_blank">
               <Card
                 style={{
-                  maxHeight: "10vh",
+                  maxHeight: "3vh",
                   border: "solid rgb(239, 243, 244)",
                   margin: "1%",
                   textAlign: "left",
-                  padding: "5%"
+                  padding: "2%",
                 }}
               >
                 <p style={{ float: "right", paddingRight: "5%" }}>
-                  {timeSince(new Date(article.pubDate))}
+                  {timeSinceDate(new Date(article.pubDate))}
                 </p>
-                <h4>{article.title}</h4>
-                {/* <div style={{ fontSize: ".9rem" }}>
-                  {convertToPlain(article.content).slice(0, 180) + "..."}
-                </div> */}
+                <h4 style={{ display: "flex" }}>
+                  <GetIconWithURL url={article.baseUrl} />
+                  {article.title}
+                </h4>
               </Card>
             </a>
           ))
