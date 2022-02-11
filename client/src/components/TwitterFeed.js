@@ -5,6 +5,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
+
 import {
   getMediaUrl,
   getUserTweets,
@@ -84,16 +87,19 @@ const TwitterFeed = ({ layout }) => {
                   </p>
                 </div>
                 {tweet.attachments && (
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      width: 151,
-                      borderRadius: 5,
-                      margin: "1rem",
-                      border: ".1rem solid lightgrey",
-                    }}
-                    src={getMediaUrl(tweetMedia, tweet.attachments)}
-                  />
+                  <Zoom>
+                    <CardMedia
+                      component="img"
+                      sx={{
+                        height: 201,
+                        width: 201,
+                        borderRadius: 5,
+                        margin: "1rem",
+                        border: ".1rem solid lightgrey",
+                      }}
+                      src={getMediaUrl(tweetMedia, tweet.attachments)}
+                    />
+                  </Zoom>
                 )}
               </div>
             </Card>
