@@ -125,3 +125,15 @@ a:visited {
 .Center a {
   color: cornflowerblue;
 }
+
+.noshow {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.zoomed {
+  padding: 5rem;
+}
