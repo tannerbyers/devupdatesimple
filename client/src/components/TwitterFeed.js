@@ -44,10 +44,9 @@ const TwitterFeed = ({ layout }) => {
   return (
     <div
       style={{
-        width: "80%",
-        margin: "10px auto",
-        padding: "10px",
-        textAlign: "left",
+        justifyContent: "center",
+        display: "flex",
+        flexWrap: "wrap",
       }}
     >
       {layout == "default"
@@ -58,6 +57,9 @@ const TwitterFeed = ({ layout }) => {
                 margin: "1%",
                 padding: "5%",
                 border: "solid rgb(239, 243, 244)",
+                width: "30%",
+                minWidth: "300px",
+                textAlign: "left",
               }}
             >
               <div style={{ paddingRight: "5%" }}>
@@ -76,7 +78,11 @@ const TwitterFeed = ({ layout }) => {
                     @{getUserData(tweet, "username")}
                   </p>
                 </div>
-                <p>{removeTwitterImageLink(tweet.text)}</p>
+                <div style={{ width: "10vw" }}>
+                  <p style={{ whiteSpace: "normal" }}>
+                    {removeTwitterImageLink(tweet.text)}
+                  </p>
+                </div>
                 {tweet.attachments && (
                   <CardMedia
                     component="img"

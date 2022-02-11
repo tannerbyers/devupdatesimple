@@ -6,7 +6,7 @@ function About() {
       <div style={{ padding: "2%", textAlign: "left" }} className="Center">
         <h2>Why does this website exist?</h2>
         <p>
-          I wanted a website that keeps frontend developers up to date, so I
+          I wanted a website that keeps frontend developers up to date, didn't have ads, and was a nice format, so I
           made one
         </p>
         <h2>I found a bug or have a feature request!?</h2>

@@ -16,11 +16,11 @@ const ResponsiveAppBar = () => {
         <Toolbar disableGutters>
           <Typography
             style={{ paddingRight: "1vw" }}
-            variant="h3"
+            variant="h4"
             noWrap
             component="div"
           >
-            Dev Update
+            Dev Update 🧿
           </Typography>
           <div style={{ display: "flex", textAlign: "right" }}>
             <Typography variant="h6" noWrap component="div">

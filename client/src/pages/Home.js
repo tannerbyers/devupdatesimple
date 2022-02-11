@@ -41,7 +41,7 @@ function Home() {
                   width: "80%",
                   margin: "10px auto",
                   padding: "10px",
-                  textAlign: "left",
+                  textAlign: "center",
                 }}
               >
                 Daily HN Content
@@ -65,7 +65,7 @@ function Home() {
                   width: "80%",
                   margin: "10px auto",
                   padding: "10px",
-                  textAlign: "left",
+                  textAlign: "center",
                 }}
               >
                 Your News
@@ -79,7 +79,7 @@ function Home() {
                   width: "80%",
                   margin: "10px auto",
                   padding: "10px",
-                  textAlign: "left",
+                  textAlign: "center",
                 }}
               >
                 Recent Tweets
