@@ -138,7 +138,6 @@ const RSSFeed = ({ layout }) => {
             <a href={article.link} target="_blank">
               <Card
                 style={{
-                  maxHeight: "3vh",
                   border: "solid rgb(239, 243, 244)",
                   margin: "1%",
                   textAlign: "left",
