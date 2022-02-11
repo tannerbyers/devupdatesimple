@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import { timeSinceDate } from "../utils/utils.js";
-import { ReactJs } from "@icons-pack/react-simple-icons";
-import { V8 } from "@icons-pack/react-simple-icons";
+import {
+  Nodedotjs,
+  Bootstrap,
+  V8,
+  ReactJs,
+  Googlechrome,
+  Google,
+  WThreeC,
+  Sass,
+  Twitter,
+} from "@icons-pack/react-simple-icons";
+
 const getRSSFeed = async () => {
   const response = await fetch("/api/rss_feed");
   const body = await response.json();
@@ -14,6 +24,72 @@ const getRSSFeed = async () => {
 
 const GetIconWithURL = ({ url }) => {
   switch (url) {
+    case "https://blog.twitter.com/engineering/en_us/blog.rss":
+      return (
+        <div>
+          <Twitter
+            style={{ paddingRight: ".5rem" }}
+            color="#1DA1F2"
+            size={30}
+          />
+        </div>
+      );
+    case "https://sass-lang.com/feed.xml":
+      return (
+        <div>
+          <Sass style={{ paddingRight: ".5rem" }} color="#CC6699" size={30} />
+        </div>
+      );
+    case "https://nodejs.org/en/feed/blog.xml":
+      return (
+        <div>
+          <Nodedotjs
+            style={{ paddingRight: ".5rem" }}
+            color="#339933"
+            size={30}
+          />
+        </div>
+      );
+    case "https://blog.getbootstrap.com/feed.xml":
+      return (
+        <div>
+          <Bootstrap
+            style={{ paddingRight: ".5rem" }}
+            color="#7952B3"
+            size={30}
+          />
+        </div>
+      );
+
+    case "https://www.w3.org/blog/news/feed":
+      return (
+        <div>
+          <WThreeC
+            style={{ paddingRight: ".5rem" }}
+            color="#005A9C"
+            size={30}
+          />
+        </div>
+      );
+
+    case "https://developers.google.com/web/fundamentals/rss.xml":
+      return (
+        <div>
+          <Google style={{ paddingRight: ".5rem" }} color="#4285F4" size={30} />
+        </div>
+      );
+
+    case "https://blog.google/products/chrome/rss/":
+      return (
+        <div>
+          <Googlechrome
+            style={{ paddingRight: ".5rem" }}
+            color="#4285F4"
+            size={30}
+          />
+        </div>
+      );
+
     case "https://reactjs.org/feed.xml":
       return (
         <div>

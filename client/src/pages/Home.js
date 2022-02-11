@@ -44,7 +44,7 @@ function Home() {
                   textAlign: "center",
                 }}
               >
-                Daily HN Content
+                Daily News
               </h3>
               <Button variant="outlined" onClick={() => setHNCategory("top")}>
                 top
@@ -68,7 +68,7 @@ function Home() {
                   textAlign: "center",
                 }}
               >
-                Your News
+                New Standards
               </h3>
 
               <RSSFeed layout={layout} />
