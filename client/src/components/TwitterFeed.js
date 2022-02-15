@@ -20,6 +20,7 @@ const TwitterFeed = ({ layout }) => {
 
   useEffect(async () => {
     const tweetResponse = await getUserTweets();
+    console.log({tweetResponse})
     const twitterUser = await getTwitterUserData();
     setTwitterUserData(twitterUser.data);
     setTweets(tweetResponse.data);

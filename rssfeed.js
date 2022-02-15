@@ -18,7 +18,6 @@ function requestBlogs(urls) {
         parser
           .parseURL(url)
           .then((feed) => {
-            console.log(feed.items);
             const blogs = feed.items
               .map((item) => ({
                 baseUrl: urls[i],

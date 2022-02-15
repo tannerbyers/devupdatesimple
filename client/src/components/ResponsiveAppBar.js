@@ -6,46 +6,54 @@ import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Link } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-const pages = ["Home", "About", "Holy Grail"];
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#1976d2",
+    },
+  },
+});
 
 const ResponsiveAppBar = () => {
   return (
-    <AppBar position="static">
-      <Container maxWidth="l">
-        <Toolbar disableGutters>
-          <Typography
-            style={{ paddingRight: "1vw" }}
-            variant="h4"
-            noWrap
-            component="div"
-          >
-            Dev Update 🧿
-          </Typography>
-          <div style={{ display: "flex", textAlign: "right" }}>
-            <Typography variant="h6" noWrap component="div">
-              <Link style={{ paddingRight: "1vw", color: "#fff" }} to="/">
-                Home
-              </Link>
-            </Typography>
-            <Typography variant="h6" noWrap component="div">
-              <Link style={{ paddingRight: "1vw", color: "#fff" }} to="/about">
-                About
-              </Link>
-            </Typography>
+    <ThemeProvider theme={darkTheme}>
+      <AppBar color="inherit" enableColorOnDark position="static">
+        <Container maxWidth="l">
+          <Toolbar disableGutters>
+            <h1 style={{ color: "#76C8DF", paddingRight: "1vw" }}>
+              Dev Update 🧿
+            </h1>
+            <div style={{ display: "flex", textAlign: "right" }}>
+              <Typography variant="h6" noWrap component="div">
+                <Link style={{ paddingRight: "1vw", color: "#fff" }} to="/">
+                  Home
+                </Link>
+              </Typography>
+              <Typography variant="h6" noWrap component="div">
+                <Link
+                  style={{ paddingRight: "1vw", color: "#fff" }}
+                  to="/about"
+                >
+                  About
+                </Link>
+              </Typography>
 
-            <Typography variant="h6" noWrap component="div">
-              <Link
-                style={{ paddingRight: "1vw", color: "#fff" }}
-                to="/holygrail"
-              >
-                Holy Grail
-              </Link>
-            </Typography>
-          </div>
-        </Toolbar>
-      </Container>
-    </AppBar>
+              <Typography variant="h6" noWrap component="div">
+                <Link
+                  style={{ paddingRight: "1vw", color: "#fff" }}
+                  to="/holygrail"
+                >
+                  Holy Grail
+                </Link>
+              </Typography>
+            </div>
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </ThemeProvider>
   );
 };
 export default ResponsiveAppBar;
