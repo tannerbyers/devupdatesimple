@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
-import { timeSinceDate } from "../utils/utils.js";
 import {
-  Nodedotjs,
-  Bootstrap,
-  V8,
-  ReactJs,
-  Googlechrome,
-  Google,
-  WThreeC,
-  Sass,
-  Twitter,
-} from "@icons-pack/react-simple-icons";
+  timeSinceDate,
+  GetIconWithURL,
+  calculateReadTime,
+} from "../utils/utils.js";
 
 const getRSSFeed = async () => {
   const response = await fetch("/api/rss_feed");
@@ -20,97 +13,6 @@ const getRSSFeed = async () => {
     throw Error(body.message);
   }
   return body;
-};
-
-const GetIconWithURL = ({ url }) => {
-  switch (url) {
-    case "https://blog.twitter.com/engineering/en_us/blog.rss":
-      return (
-        <div>
-          <Twitter
-            style={{ paddingRight: ".5rem" }}
-            color="#1DA1F2"
-            size={30}
-          />
-        </div>
-      );
-    case "https://sass-lang.com/feed.xml":
-      return (
-        <div>
-          <Sass style={{ paddingRight: ".5rem" }} color="#CC6699" size={30} />
-        </div>
-      );
-    case "https://nodejs.org/en/feed/blog.xml":
-      return (
-        <div>
-          <Nodedotjs
-            style={{ paddingRight: ".5rem" }}
-            color="#339933"
-            size={30}
-          />
-        </div>
-      );
-    case "https://blog.getbootstrap.com/feed.xml":
-      return (
-        <div>
-          <Bootstrap
-            style={{ paddingRight: ".5rem" }}
-            color="#7952B3"
-            size={30}
-          />
-        </div>
-      );
-
-    case "https://www.w3.org/blog/news/feed":
-      return (
-        <div>
-          <WThreeC
-            style={{ paddingRight: ".5rem" }}
-            color="#005A9C"
-            size={30}
-          />
-        </div>
-      );
-
-    case "https://developers.google.com/web/fundamentals/rss.xml":
-      return (
-        <div>
-          <Google style={{ paddingRight: ".5rem" }} color="#4285F4" size={30} />
-        </div>
-      );
-
-    case "https://blog.google/products/chrome/rss/":
-      return (
-        <div>
-          <Googlechrome
-            style={{ paddingRight: ".5rem" }}
-            color="#4285F4"
-            size={30}
-          />
-        </div>
-      );
-
-    case "https://reactjs.org/feed.xml":
-      return (
-        <div>
-          <ReactJs
-            style={{ paddingRight: ".5rem" }}
-            color="#61DAFB"
-            size={30}
-          />
-        </div>
-      );
-
-    case "https://v8.dev/blog.atom":
-      return (
-        <div>
-          <V8 style={{ paddingRight: ".5rem" }} color="#4B8BF5" size={30} />
-        </div>
-      );
-
-    default:
-      return <>Default</>;
-  }
 };
 
 const RSSFeed = ({ layout }) => {
@@ -151,12 +53,8 @@ const RSSFeed = ({ layout }) => {
                   <GetIconWithURL url={article.baseUrl} />
                   {article.title}
                 </h4>
-                <p style={{fontSize: ".8rem", paddingTop: ".3rem"}}>
-                  {Math.ceil(article.content.length / 4 / 60) < 20
-                    ? `${Math.ceil(
-                        article.content.length / 4 / 60
-                      )} minute read`
-                    : "too long"}
+                <p style={{ fontSize: ".8rem", paddingTop: ".3rem" }}>
+                  {`${calculateReadTime(article.content)} minute read`}
                 </p>
               </Card>
             </a>
