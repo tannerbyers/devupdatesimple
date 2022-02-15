@@ -1,8 +1,8 @@
 import express from "express";
-import path from "path"
-
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import path from "path";
+import { createClient } from "redis";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -21,9 +21,20 @@ const twitterUserMock = JSON.parse(
   await readFile(new URL("./twitterUserMock.json", import.meta.url))
 );
 
-// Have Node serve the files for our built React app
-app.use(express.static(path.resolve(__dirname, './client/build')));
+(async () => {
+  const client = createClient();
 
+  client.on("error", (err) => console.log("Redis Client Error", err));
+
+  await client.connect();
+
+  await client.set("key", "value");
+  const value = await client.get("key");
+  console.log({value})
+})();
+
+// Have Node serve the files for our built React app
+app.use(express.static(path.resolve(__dirname, "./client/build")));
 
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`));
@@ -79,7 +90,6 @@ app.get("/api/rss_feed", async (req, res) => {
 });
 
 // All other GET requests not handled before will return our React app
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build', 'index.html'));
-  });
-  
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
