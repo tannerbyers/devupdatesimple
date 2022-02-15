@@ -20,7 +20,7 @@ const TwitterFeed = ({ layout }) => {
 
   useEffect(async () => {
     const tweetResponse = await getUserTweets();
-    console.log({tweetResponse})
+    console.log({ tweetResponse });
     const twitterUser = await getTwitterUserData();
     setTwitterUserData(twitterUser.data);
     setTweets(tweetResponse.data);
@@ -37,7 +37,7 @@ const TwitterFeed = ({ layout }) => {
   const removeTwitterImageLink = (text) => {
     // IDK why but twitter adds a custom url for the image in a tweet. I am using the attachments to get the link. I decided to just remove the link.
     // I might want to just iterate over the string and if I find a t.co link, make it an image src or something idk.
-    var cleanedURL = text.replace(/(?:https):\/\/(t.co)[\n\S]+/g, '');
+    var cleanedURL = text.replace(/(?:https):\/\/(t.co)[\n\S]+/g, "");
     return cleanedURL;
   };
 
@@ -49,100 +49,65 @@ const TwitterFeed = ({ layout }) => {
         flexWrap: "wrap",
       }}
     >
-      {layout == "default"
-        ? tweets.map((tweet) => (
-            <Card
-              sx={{
-                display: "flex",
-                margin: "1%",
-                padding: "1%",
-                border: "solid rgb(239, 243, 244)",
-                width: "30%",
-                minWidth: "300px",
-                textAlign: "left",
-              }}
-            >
-              <div style={{ paddingRight: "5%" }}>
-                <img src={getUserData(tweet, "profile_image_url")} />
-              </div>
-              <div>
-                <div
-                  style={{
-                    display: "flex",
-                    color: "black",
-                    minWidth: "20vw",
-                  }}
-                >
-                  <b>{getUserData(tweet, "name")}</b>
-                  <p style={{ color: "grey", paddingLeft: "2%" }}>
-                    @{getUserData(tweet, "username")}
-                  </p>
-                </div>
-                <div style={{ width: "10vw" }}>
-                  <p style={{ whiteSpace: "normal" }}>
-                    {removeTwitterImageLink(tweet.text)}
-                  </p>
-                </div>
-                {tweet.attachments && (
-                  <div style={{textAlign: "left"}}>
-                  <Zoom>
-                      <CardMedia
-                        component="img"
-                        sx={{
-                          height: 200,
-                          width: 200,
-                          margin: "1rem",
-                          padding: "1rem 0 1rem 0",
-                          border: ".1rem solid lightgrey",
-                          borderRadius: "5px",
-                          objectFit: "scale-down"
-                        }}
-                        src={getMediaUrl(tweetMedia, tweet.attachments)}
-                      />
-                  </Zoom>
-                  </div>
-                )}
-              </div>
-            </Card>
-          ))
-        : tweets.map((tweet) => (
-            <Card
-              sx={{
-                display: "flex",
-                borderBottomColor: "rgb(239, 243, 244)",
-                border: "solid rgb(239, 243, 244)",
-                margin: "1%",
-              }}
-            >
-              <Box
-                sx={{
+      {tweets.length > 0 ? (
+        tweets.map((tweet) => (
+          <Card
+            sx={{
+              display: "flex",
+              margin: "1%",
+              padding: "1%",
+              border: "solid rgb(239, 243, 244)",
+              width: "30%",
+              minWidth: "300px",
+              textAlign: "left",
+            }}
+          >
+            <div style={{ paddingRight: "5%" }}>
+              <img src={getUserData(tweet, "profile_image_url")} />
+            </div>
+            <div>
+              <div
+                style={{
                   display: "flex",
-                  flexDirection: "column",
-                  paddingRight: "2%",
+                  color: "black",
+                  minWidth: "20vw",
                 }}
               >
-                <CardContent sx={{ flex: "1 0 auto" }}>
-                  <Typography component="div" variant="p">
-                    {tweet.text}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="text.secondary"
-                    component="div"
-                  >
-                    {tweet.id}
-                  </Typography>
-                </CardContent>
-              </Box>
+                <b>{getUserData(tweet, "name")}</b>
+                <p style={{ color: "grey", paddingLeft: "2%" }}>
+                  @{getUserData(tweet, "username")}
+                </p>
+              </div>
+              <div style={{ width: "10vw" }}>
+                <p style={{ whiteSpace: "normal" }}>
+                  {removeTwitterImageLink(tweet.text)}
+                </p>
+              </div>
               {tweet.attachments && (
-                <CardMedia
-                  component="img"
-                  sx={{ width: 151 }}
-                  src={getMediaUrl(tweetMedia, tweet.attachments)}
-                />
+                <div style={{ textAlign: "left" }}>
+                  <Zoom>
+                    <CardMedia
+                      component="img"
+                      sx={{
+                        height: 200,
+                        width: 200,
+                        margin: "1rem",
+                        padding: "1rem 0 1rem 0",
+                        border: ".1rem solid lightgrey",
+                        borderRadius: "5px",
+                        objectFit: "scale-down",
+                      }}
+                      src={getMediaUrl(tweetMedia, tweet.attachments)}
+                    />
+                  </Zoom>
+                </div>
               )}
-            </Card>
-          ))}
+            </div>
+          </Card>
+        ))
+      ) : (
+        <div>No New Tweets This Week from Ben </div>
+      )}
     </div>
   );
 };

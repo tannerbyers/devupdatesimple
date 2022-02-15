@@ -10,7 +10,7 @@ function requestBlogs(urls) {
   const parser = new Parser({
     timeout: 20000,
   });
-  const year = moment({ hour: 0, minute: 0, seconds: 0 }).add(-365, "days");
+  const year = moment({ hour: 0, minute: 0, seconds: 0 }).add(-30, "days");
   const today = moment({ hour: 0, minute: 0, seconds: 0 });
   return urls.map((url, i) => {
     return new Promise((resolve, reject) => {
