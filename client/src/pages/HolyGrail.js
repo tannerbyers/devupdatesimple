@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function HolyGrail() {
   return (
-    <div style={{ backgroundColor: "#1976d2" }} className="Content">
+    <div style={{ backgroundColor: "rgb(14,20,10)" }} className="Content">
       <div className="Center">
         <h2>My Personal List of ✨AMAZING✨ Articles & Tools</h2>
         <h2>Articles or Bloggers</h2>

@@ -31,7 +31,7 @@ function Home() {
       </Button> */
   }
   return (
-    <div style={{ backgroundColor: "#1976d2" }} className="Content">
+    <div style={{ backgroundColor: "rgb(14,20,10)" }} className="Content">
       {layout == "default" ? (
         <>
           <div className="Left">

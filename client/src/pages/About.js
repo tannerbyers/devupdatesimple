@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 function About() {
   return (
-    <div style={{ backgroundColor: "#1976d2" }} className="Content">
+    <div style={{ backgroundColor: "rgb(14,20,10)" }} className="Content">
       <div style={{ padding: "2%", textAlign: "left" }} className="Center">
         <h2>Why does this website exist?</h2>
         <p>

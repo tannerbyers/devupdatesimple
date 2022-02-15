@@ -21,17 +21,20 @@ const twitterUserMock = JSON.parse(
   await readFile(new URL("./twitterUserMock.json", import.meta.url))
 );
 
-// (async () => {
-//   const client = createClient();
+const client = createClient();
 
-//   client.on("error", (err) => console.log("Redis Client Error", err));
+client.on("connect", function () {
+  console.log("Connected to Redis!");
+});
 
-//   await client.connect();
+client.on("error", (err) => console.log("Redis Client Error", err));
 
-//   await client.set("key", "value");
-//   const value = await client.get("key");
-//   console.log({value})
-// })();
+await client.connect();
+const response = await getUsersTimeline();
+console.log({ response });
+client.set("recent_tweets", JSON.stringify(response), {
+  EX: 60,
+});
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, "./client/build")));
@@ -39,43 +42,14 @@ app.use(express.static(path.resolve(__dirname, "./client/build")));
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-// create a GET route
-app.get("/api/express_backend", (req, res) => {
-  res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
-});
-
 app.get("/api/recent_twitter_posts", async (req, res) => {
   try {
     // Make request. I'm commenting this out due to rate limitng suspension :c
     // const response = await getUsersTimeline();
     //const response = recentTweetsMock;
-    const client = createClient();
 
-    client.on("connect", function () {
-      console.log("Connected to Redis!");
-    });
-
-    client.on("error", (err) => console.log("Redis Client Error", err));
-
-    await client.connect();
-
-    await client.get("recent_tweets", async (err, data) => {
-      console.log("got tweets from redis?");
-      if (err) {
-        console.error(err);
-        throw err;
-      }
-
-      if (data) {
-        console.log("recent tweets retrieved from Redis");
-        res.status(200).send(JSON.parse(data));
-      } else {
-        const response = await getUsersTimeline();
-        await client.set("recent_tweets", 600, JSON.stringify(response.data));
-        console.log("recent tweets retrieved from the API");
-        res.status(200).send(response);
-      }
-    });
+    const test = await client.get("recent_tweets");
+    res.send(JSON.parse(test));
   } catch (e) {
     console.log(e);
     res.send(

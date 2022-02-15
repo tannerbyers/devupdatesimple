@@ -11,6 +11,7 @@ const token = process.env.BEARER_TOKEN;
 const endpointUrl = "https://api.twitter.com/2/tweets/search/recent";
 
 export default async function getUsersTimeline() {
+  console.log("Getting user twitter feed!");
   // Edit query parameters below
   // specify a search query, and any additional fields that are required
   // by default, only the Tweet ID and text fields are returned
