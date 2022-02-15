@@ -21,7 +21,9 @@ const twitterUserMock = JSON.parse(
   await readFile(new URL("./twitterUserMock.json", import.meta.url))
 );
 
-const client = createClient();
+const client = createClient({
+  url: 'redis://:pd34953aa7ac8a2f38128bf7a1b27c3397720a97493ee933ac46ab909a19354ef@ec2-54-164-85-38.compute-1.amazonaws.com:16099'
+});
 
 client.on("connect", function () {
   console.log("Connected to Redis!");
