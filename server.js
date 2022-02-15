@@ -21,17 +21,17 @@ const twitterUserMock = JSON.parse(
   await readFile(new URL("./twitterUserMock.json", import.meta.url))
 );
 
-(async () => {
-  const client = createClient();
+// (async () => {
+//   const client = createClient();
 
-  client.on("error", (err) => console.log("Redis Client Error", err));
+//   client.on("error", (err) => console.log("Redis Client Error", err));
 
-  await client.connect();
+//   await client.connect();
 
-  await client.set("key", "value");
-  const value = await client.get("key");
-  console.log({value})
-})();
+//   await client.set("key", "value");
+//   const value = await client.get("key");
+//   console.log({value})
+// })();
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, "./client/build")));
@@ -48,8 +48,34 @@ app.get("/api/recent_twitter_posts", async (req, res) => {
   try {
     // Make request. I'm commenting this out due to rate limitng suspension :c
     // const response = await getUsersTimeline();
-    const response = recentTweetsMock;
-    res.send(response);
+    //const response = recentTweetsMock;
+    const client = createClient();
+
+    client.on("connect", function () {
+      console.log("Connected to Redis!");
+    });
+
+    client.on("error", (err) => console.log("Redis Client Error", err));
+
+    await client.connect();
+
+    await client.get("recent_tweets", async (err, data) => {
+      console.log("got tweets from redis?");
+      if (err) {
+        console.error(err);
+        throw err;
+      }
+
+      if (data) {
+        console.log("recent tweets retrieved from Redis");
+        res.status(200).send(JSON.parse(data));
+      } else {
+        const response = await getUsersTimeline();
+        await client.set("recent_tweets", 600, JSON.stringify(response.data));
+        console.log("recent tweets retrieved from the API");
+        res.status(200).send(response);
+      }
+    });
   } catch (e) {
     console.log(e);
     res.send(
