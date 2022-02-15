@@ -151,6 +151,13 @@ const RSSFeed = ({ layout }) => {
                   <GetIconWithURL url={article.baseUrl} />
                   {article.title}
                 </h4>
+                <p style={{fontSize: ".8rem", paddingTop: ".3rem"}}>
+                  {Math.ceil(article.content.length / 4 / 60) < 20
+                    ? `${Math.ceil(
+                        article.content.length / 4 / 60
+                      )} minute read`
+                    : "too long"}
+                </p>
               </Card>
             </a>
           ))

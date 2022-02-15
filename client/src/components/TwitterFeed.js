@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -18,7 +17,6 @@ const TwitterFeed = ({ layout }) => {
   const [tweets, setTweets] = useState([]);
   const [tweetMedia, setTweetMedia] = useState([]);
   const [twitterUsersData, setTwitterUserData] = useState([]);
-  const theme = useTheme();
 
   useEffect(async () => {
     const tweetResponse = await getUserTweets();
@@ -38,10 +36,8 @@ const TwitterFeed = ({ layout }) => {
   const removeTwitterImageLink = (text) => {
     // IDK why but twitter adds a custom url for the image in a tweet. I am using the attachments to get the link. I decided to just remove the link.
     // I might want to just iterate over the string and if I find a t.co link, make it an image src or something idk.
-    const stringArray = text.split(" ");
-    const result = stringArray.filter((word) => word.indexOf("t.co") === -1);
-
-    return result.join(" ");
+    var cleanedURL = text.replace(/(?:https):\/\/(t.co)[\n\S]+/g, '');
+    return cleanedURL;
   };
 
   return (
@@ -58,7 +54,7 @@ const TwitterFeed = ({ layout }) => {
               sx={{
                 display: "flex",
                 margin: "1%",
-                padding: "5%",
+                padding: "1%",
                 border: "solid rgb(239, 243, 244)",
                 width: "30%",
                 minWidth: "300px",
@@ -87,19 +83,23 @@ const TwitterFeed = ({ layout }) => {
                   </p>
                 </div>
                 {tweet.attachments && (
+                  <div style={{textAlign: "left"}}>
                   <Zoom>
-                    <CardMedia
-                      component="img"
-                      sx={{
-                        height: 201,
-                        width: 201,
-                        borderRadius: 5,
-                        margin: "1rem",
-                        border: ".1rem solid lightgrey",
-                      }}
-                      src={getMediaUrl(tweetMedia, tweet.attachments)}
-                    />
+                      <CardMedia
+                        component="img"
+                        sx={{
+                          height: 200,
+                          width: 200,
+                          margin: "1rem",
+                          padding: "1rem 0 1rem 0",
+                          border: ".1rem solid lightgrey",
+                          borderRadius: "5px",
+                          objectFit: "scale-down"
+                        }}
+                        src={getMediaUrl(tweetMedia, tweet.attachments)}
+                      />
                   </Zoom>
+                  </div>
                 )}
               </div>
             </Card>
