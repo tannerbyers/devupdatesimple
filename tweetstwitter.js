@@ -17,7 +17,7 @@ export default async function getUsersTimeline() {
   // by default, only the Tweet ID and text fields are returned
   const params = {
     // 'query': '(from:tannerlinsley OR adamwathan OR wesbos OR benawad) -is:reply -is:retweet -is:quote ',
-    query: "(from:benawad) -is:reply -is:retweet -is:quote ",
+    query: "(from:tannerlinsley) -is:reply -is:retweet -is:quote ",
     "tweet.fields": "created_at,author_id",
     expansions: "attachments.media_keys",
     "media.fields": "preview_image_url,url",

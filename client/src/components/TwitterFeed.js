@@ -49,7 +49,7 @@ const TwitterFeed = ({ layout }) => {
         flexWrap: "wrap",
       }}
     >
-      {tweets.length > 0 ? (
+      {tweets != undefined && tweets.length > 0 ? (
         tweets.map((tweet) => (
           <Card
             sx={{
